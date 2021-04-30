@@ -11,54 +11,54 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/api/v1/movies")
 public class MovieController {
 
-  private MovieService movieService;
+    private MovieService movieService;
 
-  @Autowired
-  public MovieController(MovieService movieService) {
-    this.movieService = movieService;
-  }
-
-  @PostMapping()
-  public ResponseEntity<?> saveMovieData(@RequestBody Movie movie) {
-    ResponseEntity<?> responseEntity = null;
-    try {
-      responseEntity = ResponseEntity.status(201).body(movieService.saveMovie(movie));
-    } catch (Exception exception) {
-      responseEntity = ResponseEntity.status(409).body(exception.getMessage());
+    @Autowired
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
     }
-    return responseEntity;
-  }
 
-  @PutMapping(value = "/{id}")
-  public ResponseEntity<?> updateMovieById(@RequestBody Movie movie, @PathVariable("id") Integer id) {
-    ResponseEntity<?> responseEntity = null;
-    try {
-      responseEntity = ResponseEntity.status(200).body(movieService.updateMovieById(id, movie));
-    } catch (Exception exception) {
-      responseEntity = ResponseEntity.status(409).body(exception.getMessage());
+    @PostMapping()
+    public ResponseEntity<?> saveMovieData(@RequestBody Movie movie) {
+        ResponseEntity<?> responseEntity = null;
+        try {
+            responseEntity = ResponseEntity.status(201).body(movieService.saveMovie(movie));
+        } catch (Exception exception) {
+            responseEntity = ResponseEntity.status(409).body(exception.getMessage());
+        }
+        return responseEntity;
     }
-    return responseEntity;
-  }
 
-  @GetMapping(value = "/{id}")
-  public ResponseEntity<?> getMovieById(@PathVariable("id") Integer id) {
-    ResponseEntity<?> responseEntity = null;
-    try {
-      responseEntity = ResponseEntity.status(200).body(movieService.getMovieById(id));
-    } catch (Exception exception) {
-      responseEntity = ResponseEntity.status(409).body(exception.getMessage());
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<?> updateMovieById(@RequestBody Movie movie, @PathVariable("id") Integer id) {
+        ResponseEntity<?> responseEntity = null;
+        try {
+            responseEntity = ResponseEntity.status(200).body(movieService.updateMovieById(id, movie));
+        } catch (Exception exception) {
+            responseEntity = ResponseEntity.status(409).body(exception.getMessage());
+        }
+        return responseEntity;
     }
-    return responseEntity;
-  }
 
-  @DeleteMapping(value = "/{id}")
-  public ResponseEntity<?> deleteMovieById(@PathVariable("id") Integer id) {
-    ResponseEntity<?> responseEntity = null;
-    try {
-      responseEntity = ResponseEntity.status(200).body(movieService.deleteMovieById(id));
-    } catch (Exception exception) {
-      responseEntity = ResponseEntity.status(409).body(exception.getMessage());
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<?> getMovieById(@PathVariable("id") Integer id) {
+        ResponseEntity<?> responseEntity = null;
+        try {
+            responseEntity = ResponseEntity.status(200).body(movieService.getMovieById(id));
+        } catch (Exception exception) {
+            responseEntity = ResponseEntity.status(409).body(exception.getMessage());
+        }
+        return responseEntity;
     }
-    return responseEntity;
-  }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> deleteMovieById(@PathVariable("id") Integer id) {
+        ResponseEntity<?> responseEntity = null;
+        try {
+            responseEntity = ResponseEntity.status(200).body(movieService.deleteMovieById(id));
+        } catch (Exception exception) {
+            responseEntity = ResponseEntity.status(409).body(exception.getMessage());
+        }
+        return responseEntity;
+    }
 }

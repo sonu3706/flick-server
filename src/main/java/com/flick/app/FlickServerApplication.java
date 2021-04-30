@@ -14,7 +14,7 @@ public class FlickServerApplication {
 
     @Bean
     public RestTemplate getRestTemplate() {
-      return new RestTemplate();
+        return new RestTemplate();
     }
 
 }
